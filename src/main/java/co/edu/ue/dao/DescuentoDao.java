@@ -3,9 +3,10 @@ package co.edu.ue.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import co.edu.ue.model.Descuento;
-
+@Repository
 public class DescuentoDao implements DescuentosDaoI {
 	@Autowired
 	DescuentoJPA descuentoJPA;

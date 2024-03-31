@@ -3,11 +3,12 @@ package co.edu.ue.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.edu.ue.dao.DescuentosDaoI;
 import co.edu.ue.model.Descuento;
 import co.edu.ue.model.Log;
-
+@Service
 public class DescuentoService implements DescuentoServiceI{
 	@Autowired
 	DescuentosDaoI descuentoDao;

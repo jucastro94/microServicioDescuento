@@ -50,7 +50,7 @@ public class DescuentoController {
 	@PutMapping(value="updateDescuento/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Descuento> updateDescuento(@RequestBody Descuento descuento,@PathVariable("idUsu") int idUsu) {
 		HttpHeaders headers = new HttpHeaders();
-		if(descuentoServ.validarCodigoDescuento(descuento.getCodDescuento())!= null) {
+		if(descuentoServ.validarCodigoDescuento(descuento.getCodDescuento())!= null && descuentoServ.getDescuento(descuento.getIddescuento())!=null ) {
 			Descuento dato= descuentoServ.updateDescuento(descuento,idUsu);
 			return new ResponseEntity<Descuento>(dato,headers,HttpStatus.OK);
 		}else {

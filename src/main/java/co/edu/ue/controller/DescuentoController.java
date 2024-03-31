@@ -21,26 +21,26 @@ import co.edu.ue.service.DescuentoServiceI;
 @RestController
 public class DescuentoController {
 	@Autowired
-	DescuentoServiceI descuentoService;
+	DescuentoServiceI descuentoServ;
 
 	@GetMapping(value="descuentos", produces =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Descuento>> getDescuentos(){
 		HttpHeaders headers = new HttpHeaders();
-		List<Descuento> dato= descuentoService.getAllDescuentos();
+		List<Descuento> dato= descuentoServ.getAllDescuentos();
 		return new ResponseEntity<List<Descuento>>(dato,headers,HttpStatus.OK);
 	}
 	@GetMapping(value="descuento/{id}", produces =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Descuento> getDescuentos(@PathVariable("id") int id ){
 		HttpHeaders headers = new HttpHeaders();
-		Descuento dato= descuentoService.getDescuento(id);
+		Descuento dato= descuentoServ.getDescuento(id);
 		return new ResponseEntity<Descuento>(dato,headers,HttpStatus.OK);
 	}
 	
 	@PostMapping(value="addDescuento/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Descuento> addDescuento(@RequestBody Descuento descuento,@PathVariable("idUsu") int idUsu) {
 		HttpHeaders headers = new HttpHeaders();
-		if(descuentoService.validarCodigoDescuento(descuento.getCodDescuento())!= null) {
-			Descuento dato= descuentoService.addDescuento(descuento,idUsu);
+		if(descuentoServ.validarCodigoDescuento(descuento.getCodDescuento())!= null) {
+			Descuento dato= descuentoServ.addDescuento(descuento,idUsu);
 			return new ResponseEntity<Descuento>(dato,headers,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<Descuento>(null,headers,HttpStatus.NOT_FOUND);
@@ -50,8 +50,8 @@ public class DescuentoController {
 	@PutMapping(value="updateDescuento/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Descuento> updateDescuento(@RequestBody Descuento descuento,@PathVariable("idUsu") int idUsu) {
 		HttpHeaders headers = new HttpHeaders();
-		if(descuentoService.validarCodigoDescuento(descuento.getCodDescuento())!= null) {
-			Descuento dato= descuentoService.updateDescuento(descuento,idUsu);
+		if(descuentoServ.validarCodigoDescuento(descuento.getCodDescuento())!= null) {
+			Descuento dato= descuentoServ.updateDescuento(descuento,idUsu);
 			return new ResponseEntity<Descuento>(dato,headers,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<Descuento>(null,headers,HttpStatus.NOT_FOUND);
@@ -61,8 +61,8 @@ public class DescuentoController {
 	@DeleteMapping(value="deleteDescuento/{idDescuento}/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> deleteDescuento(@PathVariable("idDescuento") int id, @PathVariable("idUsu") int idUsu) {
 		HttpHeaders headers = new HttpHeaders();
-		if(descuentoService.getDescuento(id)!= null) {
-			boolean dato= descuentoService.deleteDescuetn(id,idUsu);
+		if(descuentoServ.getDescuento(id)!= null) {
+			boolean dato= descuentoServ.deleteDescuetn(id,idUsu);
 			return new ResponseEntity<Boolean>(dato,headers,HttpStatus.OK);
 		}else {
 			return new ResponseEntity<Boolean>(null,headers,HttpStatus.NOT_FOUND);
@@ -71,7 +71,7 @@ public class DescuentoController {
 	@GetMapping(value="descuento/{codDescuento}", produces =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> validarDescuento(@PathVariable("codDescuento") String cod){
 		HttpHeaders headers = new HttpHeaders();
-		boolean dato= descuentoService.validarCodigo(cod);
+		boolean dato= descuentoServ.validarCodigo(cod);
 		return new ResponseEntity<Boolean>(dato,headers,HttpStatus.OK);
 	}
 	

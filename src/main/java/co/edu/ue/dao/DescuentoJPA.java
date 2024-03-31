@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import co.edu.ue.model.Descuento;
 
 public interface DescuentoJPA extends JpaRepository<Descuento, Integer>{
-    @Query("SELECT iddescuento FROM Descuento e WHERE e.codDescuento=:cod AND CURDATE() BETWEEN e.fechcaInicio AND e.fechaFin;")
+    @Query("SELECT iddescuento FROM descuento e WHERE e.codDescuento=:cod AND CURDATE() BETWEEN e.fechaInicio AND e.fechaFin;")
 	boolean validarCod(String cod);
     
-    @Query("SELECT e FROM Descuento e WHERE e.codDescuento=:cod;")
+    @Query("SELECT e FROM descuento e WHERE e.codDescuento = :cod;")
     Descuento validarCodDesc(String cod);
 
     

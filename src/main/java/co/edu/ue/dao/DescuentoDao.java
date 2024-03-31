@@ -41,7 +41,7 @@ public class DescuentoDao implements DescuentosDaoI {
 	}
 
 	@Override
-	public boolean validarCodigo(String cod) {
+	public Descuento validarCodigo(String cod) {
 		return descuentoJPA.validarCod(cod);
 	}
 

@@ -10,6 +10,6 @@ public interface DescuentosDaoI {
 	Descuento getDescuento(int id);
 	Descuento updateDescuento (Descuento descuento);
 	void deleteDescuetn(int id);
-	boolean validarCodigo(String cod);
+	Descuento validarCodigo(String cod);
 	Descuento validarCodigoDescuento(String cod);
 }

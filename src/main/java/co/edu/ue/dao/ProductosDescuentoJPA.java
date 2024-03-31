@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import co.edu.ue.model.Productodescuento;
 
 public interface ProductosDescuentoJPA extends JpaRepository<Productodescuento, Integer>{
-	@Query("SELECT e FROM productodescuento e WHERE e.FK_descuento=:fK_descuento;")
+	@Query("SELECT e FROM Productodescuento e WHERE e.FK_descuento = :fK_descuento")
 	List<Productodescuento> findByFK_descuento(int fK_descuento);
 	
-	@Query("SELECT e FROM productodescuento e WHERE e.FK_descuento=:fK_descuento AND e.FK_descuento = :fk_producto ;")
+	@Query("SELECT e FROM Productodescuento e WHERE e.FK_descuento=:fK_descuento AND e.FK_producto = :fk_producto ")
 	Productodescuento findProducDescuento(int fK_descuento, int fk_producto);
 }

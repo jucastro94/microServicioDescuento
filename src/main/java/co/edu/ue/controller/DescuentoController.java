@@ -68,11 +68,17 @@ public class DescuentoController {
 			return new ResponseEntity<Boolean>(null,headers,HttpStatus.NOT_FOUND);
 		}
 	}
-	@GetMapping(value="descuento/{codDescuento}", produces =MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="valDescuento/{codDescuento}", produces =MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> validarDescuento(@PathVariable("codDescuento") String cod){
 		HttpHeaders headers = new HttpHeaders();
 		boolean dato= descuentoServ.validarCodigo(cod);
-		return new ResponseEntity<Boolean>(dato,headers,HttpStatus.OK);
+		//System.out.println("-----------------"+dato);
+		if(dato) {
+			return new ResponseEntity<Boolean>(true,headers,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Boolean>(false,headers,HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 }

@@ -12,7 +12,8 @@ import co.edu.ue.model.Productodescuento;
 public class ProductoDescuentoService implements ProductoDescuentoServiceI {
 	@Autowired
 	ProductosDescuentoDaoI productosDescDao;
-
+	@Autowired
+	LogServiceI log;
 	@Override
 	public Productodescuento addProductoDescuento(Productodescuento productodescuento, int usu) {
 		registarLog(usu,"insert","agrega producto: "+productodescuento.getFK_producto()+" a descuento: "+ productodescuento.getFK_descuento());
@@ -54,6 +55,7 @@ public class ProductoDescuentoService implements ProductoDescuentoServiceI {
 		lg.setIdUsuario(usu);
 		lg.setFecha(lg.obtenerFecha());
 		lg.setObservacion(observacion);
+		log.addLog(lg);
 	}
 
 	@Override

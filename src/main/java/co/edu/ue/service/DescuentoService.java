@@ -12,7 +12,8 @@ import co.edu.ue.model.Log;
 public class DescuentoService implements DescuentoServiceI{
 	@Autowired
 	DescuentosDaoI descuentoDao;
-	
+	@Autowired
+	LogServiceI log;
 	@Override
 	public Descuento addDescuento(Descuento descuento, int usu) {
 		registarLog(usu,"insert","agrega descuento: "+ descuento.getCodDescuento());
@@ -43,7 +44,11 @@ public class DescuentoService implements DescuentoServiceI{
 	}
 	@Override
 	public boolean validarCodigo(String cod) {
-		return descuentoDao.validarCodigo(cod);
+		if(descuentoDao.validarCodigo(cod)!= null) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	@Override
 	public Descuento validarCodigoDescuento(String cod) {
@@ -55,6 +60,6 @@ public class DescuentoService implements DescuentoServiceI{
 		lg.setIdUsuario(usu);
 		lg.setFecha(lg.obtenerFecha());
 		lg.setObservacion(observacion);
-		
+		log.addLog(lg);
 	}
 }

@@ -13,4 +13,5 @@ public interface DescuentoJPA extends JpaRepository<Descuento, Integer>{
     @Query("SELECT e FROM Descuento e WHERE e.codDescuento=:cod;")
     Descuento validarCodDesc(String cod);
 
+    
 }
